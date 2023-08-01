@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  gap: 60px;
+  margin: 60px 0px 65px 0;
+}
+
+.container select {
+  position: relative;
+  padding: 5px 12px 6px 14px;
+  border-radius: 50px;
+  font-size: 15px;
+  width: 171px;
+}
+
+.container select:hover {
+    box-shadow: 0px 5px 10px palegreen;
+}
+
+.container select, option {
+    cursor: pointer;
+}
+
+.container label {
+    display: block;
+}

@@ -1,0 +1,84 @@
+.container {
+  margin: auto;
+  padding: 50px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
+    url("../src/assets/fondo-tierra-flags.jpeg");
+  background-position: center;
+  background-size: cover;
+
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.container span {
+  font-style: oblique;
+  padding-left: 5px;
+}
+
+.container h1 {
+  margin-bottom: 10px;
+  font-size: 50px;
+  text-align: center;
+  letter-spacing: 2px;
+  color: #3cae6f;
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+}
+
+.container_country {
+  font-size: 18px;
+  width: 50rem;
+  height: 50rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: -1px 1px 23px 5px rgba(0, 0, 0, 0.42);
+  -webkit-box-shadow: -1px 1px 23px 5px rgba(0, 0, 0, 0.42);
+  -moz-box-shadow: -1px 1px 23px 5px rgba(0, 0, 0, 0.42);
+  border-radius: 32px;
+}
+
+.container_country img {
+  width: 367px;
+  height: 215px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px black;
+}
+
+.container_country h2 {
+  font-size: 40px;
+  letter-spacing: 1.5px;
+}
+
+.card_activity {
+  width: 50rem;
+  height: 50rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: -1px 1px 23px 5px rgba(0, 0, 0, 0.42);
+  -webkit-box-shadow: -1px 1px 23px 5px rgba(0, 0, 0, 0.42);
+  -moz-box-shadow: -1px 1px 23px 5px rgba(0, 0, 0, 0.42);
+  border-radius: 32px;
+}
+
+.section_activity {
+  display: flex;
+  justify-content: space-evenly;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.section_activity span {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
