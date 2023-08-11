@@ -2,6 +2,8 @@
   display: flex;
   gap: 60px;
   margin: 60px 0px 65px 0;
+  color: #183153;
+  font-weight: 700;
 }
 
 .container select {
@@ -10,10 +12,11 @@
   border-radius: 50px;
   font-size: 15px;
   width: 171px;
+  transition: box-shadow 0.3s ease;
 }
 
 .container select:hover {
-    box-shadow: 0px 5px 10px palegreen;
+    box-shadow: 0px 4px 15px 1px #63E6be
 }
 
 .container select, option {
@@ -22,4 +25,5 @@
 
 .container label {
     display: block;
+    margin-bottom: 10px;
 }

@@ -1,30 +1,47 @@
 import { useEffect, useState } from "react";
 import styles from "./SearchBar.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCountryByName } from "../../redux/actions";
+import Swal from "sweetalert2";
 
 const SearchBar = () => {
   const [countryName, setCountryName] = useState("");
+  const [notfound, setNotFound] = useState(false);
   const dispatch = useDispatch();
+  const countries = useSelector((state) => state.countries);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (countryName.length === 0) {
-      return alert("Please enter the name of a country");
+
+    if (!countryName.length) {
+      Swal.fire({
+        icon: "info",
+        text: "Please enter the name of a country"
+      })
     } else {
-      dispatch(getCountryByName(countryName));
+      // Buscar el país por nombre en la lista de países almacenada en countries
+      const foundCountry = countries.find((country) =>
+        country.name.toLowerCase().includes(countryName.toLowerCase())
+      );
+
+      if (foundCountry) {
+        dispatch(getCountryByName(countryName));
+        setNotFound(false);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `"${countryName}" not found, please try again`,
+        });
+        setNotFound(true);
+      }
       setCountryName("");
     }
   };
 
-  // Realizar la búsqueda en tiempo real
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      dispatch(getCountryByName(countryName));
-    }, 500);
-
-    return () => clearTimeout(timerId); // Limpiar el timer en cada cambio del input
-  }, [dispatch, countryName]);
+  const handleInputChange = (e) => {
+    setCountryName(e.target.value);
+  };
 
   return (
     <div className={styles.container}>
@@ -34,11 +51,11 @@ const SearchBar = () => {
           type="search"
           name="search"
           value={countryName}
-          onChange={(e) => setCountryName(e.target.value)}
+          onChange={handleInputChange}
           placeholder="Search Country..."
         />
         <button type="submit" onClick={handleSubmit}>
-          Search
+          <span>Search</span>
         </button>
       </form>
     </div>
@@ -46,3 +63,12 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+
+// // Realizar la búsqueda en tiempo real
+// useEffect(() => {
+//   const timerId = setTimeout(() => {
+//     dispatch(getCountryByName(countryName));
+//   }, 500);
+
+//   return () => clearTimeout(timerId); // Limpiar el timer en cada cambio del input
+// }, [dispatch, countryName]);

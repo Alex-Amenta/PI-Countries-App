@@ -3,10 +3,8 @@ import Card from "../card/Card";
 import styles from "./CardsContainer.module.css";
 import { useState } from "react";
 import Pagination from "../pagination/Pagination";
-// import { useSelector } from "react-redux";
 
-const CardsContainer = ({ countries }) => {
-  // const Allcountries = useSelector((state) => state.countries);
+const CardsContainer = ({ countries, currentFilter}) => {
 
   // State para manejar estado actual
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,16 +32,19 @@ const CardsContainer = ({ countries }) => {
           countries={countries.length}
           countriesPerPage={countriesPerPage}
           currentPage={currentPage}
+          currentFilter={currentFilter}
           onPageChange={handlePageChange}
         />
       </nav>
       <section className={styles.containerCards}>
         {currentCountries.map((country) => {
           return (
-            <Link className={styles.link} to={`/detail/${country.id}`}>
+            <Link
+              key={country.id}
+              className={styles.link}
+              to={`/detail/${country.id}`}
+            >
               <Card
-                key={country.id}
-                id={country.id}
                 name={country.name}
                 flag={country.flag}
                 continent={country.continent}

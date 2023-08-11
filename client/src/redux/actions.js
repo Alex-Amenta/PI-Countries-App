@@ -8,7 +8,7 @@ import {
     FILTER_BY_CONTINENT,
     FILTER_BY_ACTIVITY,
     ALPHABETIC_ORDER,
-    POBLATION_ORDER
+    POPULATION_ORDER
 } from './types';
 
 const URL_COUNTRIES = 'http://localhost:3001/countries';
@@ -45,7 +45,7 @@ const getCountryByName = (name) => {
             const countryName = apiData.data;
             dispatch({ type: GET_COUNTRY_NAME, payload: countryName });
         } catch (error) {
-            console.log(error);
+            alert("Country not found");
         }
     }
 };
@@ -99,7 +99,7 @@ const alphabeticOrder = (payload) => {
 
 const poblationOrder = (payload) => {
     return {
-        type: POBLATION_ORDER,
+        type: POPULATION_ORDER,
         payload
     }
 }

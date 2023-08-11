@@ -12,9 +12,9 @@ const getActivitiesHandler = async (req, res) => {
 
 const createActivitiesHandler = async (req, res) => {
     //PD: ESTA RUTA CREA UNA ACTIVIDAD TURISTICA
-    const { id, name, difficulty, duration, season, countries } = req.body;
+    const { name, difficulty, duration, season, countries } = req.body;
     try {
-        const newActivity = await createActivity(id, name, difficulty, duration, season, countries);
+        const newActivity = await createActivity( name, difficulty, duration, season, countries);
         res.status(201).json(newActivity);
     } catch (error) {
         res.status(404).json({ error: error.message });

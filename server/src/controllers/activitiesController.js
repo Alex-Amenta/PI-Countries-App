@@ -2,11 +2,12 @@ const { Activity, Country } = require('../db.js');
 
 const getAllActivity = async () => await Activity.findAll({
     include: {
-        model: Country
+        model: Country,
+        attributes: ['name']
     }
 });
 
-const createActivity = async (id, name, difficulty, duration, season, countries) => {
+const createActivity = async (name, difficulty, duration, season, countries) => {
     // Verificar si ya existe una actividad con el mismo nombre y atributos
     const existingActivity = await Activity.findOne({
         where: {
@@ -31,22 +32,22 @@ const createActivity = async (id, name, difficulty, duration, season, countries)
     });
 
     if (countries && countries.length > 0) {
-        const countryIds = countries.map((country) => country.toUpperCase());
+        const countryNames = countries.map((country) => country.toUpperCase());
 
-        const countryFind = await Activity.findAll({
+        const countryFind = await Country.findAll({
             where: {
-                id: countryIds,
+                name: countryNames,
             },
         });
 
-        // Relacionar la actividad con los países encontrados en la base de datos
-        await newActivity.setCountries(countryFind);
+        if (countryFind) {
+            // Relacionar la actividad con los países encontrados en la base de datos
+            await newActivity.addCountries(countryFind);
+        }
     }
 
     return newActivity;
 
 }
-
-
 
 module.exports = { createActivity, getAllActivity };

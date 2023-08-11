@@ -1,10 +1,6 @@
 .container {
   margin: auto;
   padding: 50px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
-    url("../src/assets/fondo-tierra-flags.jpeg");
-  background-position: center;
-  background-size: cover;
 
   display: flex;
   justify-content: center;
@@ -21,8 +17,8 @@
   font-size: 50px;
   text-align: center;
   letter-spacing: 2px;
-  color: #3cae6f;
-  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  color: #183153;
+  text-shadow: 1px 1px 1px rgb(255, 255, 255);
 }
 
 .container_country {
@@ -32,7 +28,7 @@
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0)
+    rgba(24 49 83 / 62%)
   );
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
@@ -53,6 +49,11 @@
 .container_country h2 {
   font-size: 40px;
   letter-spacing: 1.5px;
+  color: #000;
+}
+
+.container_country h3 {
+  color: #000;
 }
 
 .card_activity {
@@ -61,7 +62,7 @@
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0)
+    rgba(24 49 83 / 62%)
   );
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
@@ -75,7 +76,7 @@
 .section_activity {
   display: flex;
   justify-content: space-evenly;
-  border: 1px solid rgb(0, 0, 0);
+  border: 0px solid rgb(0, 0, 0);
 }
 
 .section_activity span {

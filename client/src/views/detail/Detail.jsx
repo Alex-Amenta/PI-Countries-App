@@ -15,6 +15,7 @@ const Detail = () => {
     dispatch(getActivities());
   }, [dispatch, id]);
 
+   
   return (
     <div className={styles.container}>
       {!country ? (

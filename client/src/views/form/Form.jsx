@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import styles from "./Form.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { getCountries, postActivity } from "../../redux/actions";
 import validations from "./validations";
+import { useDispatch, useSelector } from "react-redux";
+import { getCountries } from "../../redux/actions";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const Form = () => {
+  // TRAYENDO DATOS CON REDUX
   const dispatch = useDispatch();
   const allCountries = useSelector((state) => state.allCountries);
 
@@ -21,42 +24,53 @@ const Form = () => {
   });
 
   const [error, setError] = useState({});
+  const [selectedCountries, setSelectedCountries] = useState([]); // estado para los paises seleccionados
 
   const handleInputChange = (event) => {
-    const property = event.target.name;
-    const value = event.target.value;
+    const { name, value } = event.target;
 
-    const validationErrors = validations({
-      ...newActivity,
-      [property]: value,
-    });
-
-    setError(validationErrors);
-
-    setnewActivity({
-      ...newActivity,
-      [property]: value,
-    });
+    setError(validations({ ...newActivity, [name]: value }));
+    setnewActivity({ ...newActivity, [name]: value });
   };
 
   const handleCountrySelect = (event) => {
-    // El método Array.from() crea una nueva instancia de Array a partir de un objeto iterable.
-    const selectedCountry = Array.from(
-      event.target.selectedOptions,
-      (option) => option.value
-    );
+    const countrySelect = event.target.value;
+
+    // Verificar si el país ya ha sido seleccionado y si se sobrepasa de 6 paises
+    if (selectedCountries.includes(countrySelect)) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "This country is already selected...",
+      });
+    }
+
+    if (selectedCountries.length >= 6) {
+      return Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: "Only 6 countries please!",
+      });
+    }
+
+    // Agregar el país seleccionado a la lista de países seleccionados
+    setSelectedCountries([...selectedCountries, countrySelect]);
 
     setnewActivity({
       ...newActivity,
-      countries: selectedCountry,
+      countries: [...newActivity.countries, countrySelect],
     });
+
+    setError({ ...error, countries: "" });
   };
 
-  // Función de comparación para ordenar alfabéticamente los países
-  const compareCountries = (a, b) => {
-    if (a.name < b.name) return -1;
-    if (a.name > b.name) return 1;
-    return 0;
+  const handleRemoveCountry = (country) => {
+    setSelectedCountries(selectedCountries.filter((c) => c !== country));
+
+    setnewActivity({
+      ...newActivity,
+      countries: newActivity.countries.filter((c) => c !== country),
+    });
   };
 
   const disabled =
@@ -66,22 +80,45 @@ const Form = () => {
     newActivity.season === "" ||
     newActivity.countries.length === 0;
 
+  const compareCountries = (a, b) => {
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Enviar los datos al servidor
-    dispatch(postActivity(newActivity));
+    axios
+      .post("http://localhost:3001/activities", newActivity)
+      .then((response) => {
+        if (!response.data) {
+          throw new Error("Failed to create new activity");
+        }
 
-    // Limpiar el formulario después de enviar los datos
-    setnewActivity({
-      name: "",
-      difficulty: "",
-      duration: "",
-      season: "",
-      countries: [],
-    });
-
-    alert("Turistic activity created successfully!");
+        // Si la operacion es exitosa manda los datos y limpia el form
+        setnewActivity({
+          name: "",
+          difficulty: "",
+          duration: "",
+          season: "",
+          countries: [],
+        });
+        // Limpiar los países seleccionados
+        setSelectedCountries([]);
+        Swal.fire({
+          icon: "success",
+          title: "Turistic activity created successfully!",
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Failed to create activity",
+        });
+        console.log(error.message);
+      });
   };
 
   return (
@@ -91,11 +128,12 @@ const Form = () => {
         <label>Name:</label>
         <input
           type="text"
+          placeholder="Enter name..."
           value={newActivity.name}
           name="name"
           onChange={handleInputChange}
         />
-        {error.name && <p>{error.name}</p>}
+        {error.name && <p className={styles.error_message}>{error.name}</p>}
 
         <label>Difficulty:</label>
         <select
@@ -110,16 +148,33 @@ const Form = () => {
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
-        {error.difficulty && <p>{error.difficulty}</p>}
+        {error.difficulty && (
+          <p className={styles.error_message}>{error.difficulty}</p>
+        )}
 
         <label>Duration:</label>
-        <input
-          type="text"
-          value={newActivity.duration}
+        <select
           name="duration"
+          value={newActivity.duration}
           onChange={handleInputChange}
-        />
-        {error.duration && <p>{error.duration}</p>}
+        >
+          <option value="">Select duration...</option>
+          <option value="1">1 hour</option>
+          <option value="2">2 hour</option>
+          <option value="3">3 hour</option>
+          <option value="4">4 hour</option>
+          <option value="5">5 hour</option>
+          <option value="6">6 hour</option>
+          <option value="7">7 hour</option>
+          <option value="8">8 hour</option>
+          <option value="9">9 hour</option>
+          <option value="10">10 hour</option>
+          <option value="11">11 hour</option>
+          <option value="12">12 hour</option>
+        </select>
+        {error.duration && (
+          <p className={styles.error_message}>{error.duration}</p>
+        )}
 
         <label>Season:</label>
         <select
@@ -133,7 +188,7 @@ const Form = () => {
           <option value="Winter">Winter</option>
           <option value="Spring">Spring</option>
         </select>
-        {error.season && <p>{error.season}</p>}
+        {error.season && <p className={styles.error_message}>{error.season}</p>}
 
         <label>Add country:</label>
         <select
@@ -148,10 +203,36 @@ const Form = () => {
             </option>
           ))}
         </select>
-        {error.countries && <p>{error.countries}</p>}
+        {error.countries && (
+          <p className={styles.error_message}>{error.countries}</p>
+        )}
 
-        <button type="submit" disabled={disabled}>
-          Create
+        {/* Lista de países seleccionados */}
+        <div className={styles.selectedCountries}>
+          {selectedCountries.map((country) => (
+            <div key={country} className={styles.selectedCountry}>
+              <div className={styles.button_container}>
+                <button
+                  type="button"
+                  onClick={() => handleRemoveCountry(country)}
+                >
+                  X
+                </button>
+              </div>
+              <img
+                src={allCountries.find((c) => c.name === country)?.flag || ""}
+                alt={country}
+              />
+              <h2>{country}</h2>
+            </div>
+          ))}
+        </div>
+        <button
+          type="submit"
+          disabled={disabled}
+          className={!disabled ? styles.create : styles.button_create}
+        >
+          <span>Create</span>
         </button>
       </form>
     </div>

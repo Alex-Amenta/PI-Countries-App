@@ -25,10 +25,7 @@ const NavBar = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img
-              src="https://cdn1.iconfinder.com/data/icons/social-media-circle-7/512/Circled_Linkedin_svg-256.png"
-              alt="linkedin"
-            />
+            <i className="fa-brands fa-linkedin" style={{color: "#ffffff"}}></i>
           </a>
         </li>
         <li>
@@ -37,10 +34,7 @@ const NavBar = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img
-              src="https://cdn1.iconfinder.com/data/icons/logotypes/32/github-256.png"
-              alt="github"
-            />
+            <i className="fa-brands fa-github" style={{color: "#ffffff", marginRight: "20px"}}></i>
           </a>
         </li>
       </ul>

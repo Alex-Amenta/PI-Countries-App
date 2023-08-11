@@ -49,8 +49,8 @@
   font-size: 17px;
   border-radius: 500px;
   overflow: hidden;
-  background: #21e57c;
-  color: ghostwhite;
+  background: #4ad7ad;
+  color: black;
   -webkit-box-shadow: 2px -8px 50px -14px rgba(0, 0, 0, 0.64);
   -moz-box-shadow: 2px -8px 50px -14px rgba(0, 0, 0, 0.64);
   box-shadow: 2px -8px 50px -14px rgba(0, 0, 0, 0.64);
@@ -78,7 +78,7 @@
 
 .landing button::before {
   content: "";
-  background: #000;
+  background: #ffffff;
   width: 120%;
   left: -10%;
   transform: skew(30deg);

@@ -7,7 +7,7 @@ import {
     FILTER_BY_CONTINENT,
     FILTER_BY_ACTIVITY,
     ALPHABETIC_ORDER,
-    POBLATION_ORDER
+    POPULATION_ORDER
 } from "./types"
 
 const initialState = {
@@ -18,41 +18,42 @@ const initialState = {
 }
 
 const rootReducer = (state = initialState, action) => {
-    switch (action.type) {
+    const { type, payload } = action;
+    switch (type) {
         case GET_COUNTRIES:
             return {
                 ...state,
-                allCountries: action.payload,
-                countries: action.payload
+                allCountries: payload,
+                countries: payload
             }
 
         case GET_COUNTRY_ID:
             return {
                 ...state,
-                country: action.payload
+                country: payload
             }
 
         case GET_COUNTRY_NAME:
             return {
                 ...state,
-                countries: action.payload,
-                country: action.payload
+                countries: payload,
+                country: payload
             }
 
         case GET_ACTIVITIES:
             return {
                 ...state,
-                allActivities: action.payload
+                allActivities: payload
             }
 
         case POST_ACTIVITY:
             return {
                 ...state,
-                allActivities: [...state.allActivities, action.payload]
+                allActivities: [...state.allActivities, payload]
             }
 
         case FILTER_BY_CONTINENT:
-            const { continent } = action.payload;
+            const { continent } = payload;
             // Obtener la lista completa de países desde el estado
             const allCountries = state.allCountries;
             if (continent === "All Continents") {
@@ -64,18 +65,28 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case FILTER_BY_ACTIVITY:
-            const { activity } = action.payload;
-            const filteredActivity = state.allCountries.filter(
-                (country) => country.activities && country.activities.some((act) => act.name === activity));
-
-            return { ...state, countries: filteredActivity }
+            const { activity } = payload;
+            if (activity === "All activities") {
+                return {
+                    ...state,
+                    countries: state.allCountries,
+                };
+            } else {
+                const filteredActivity = state.allCountries.filter(
+                    (country) => country.activities && country.activities.some((act) => act.name === activity)
+                );
+                return {
+                    ...state,
+                    countries: filteredActivity,
+                };
+            }
 
 
         case ALPHABETIC_ORDER:
             // Verificamos si el usuario seleccionó ordenar de A a Z (ascendente) o de Z a A (descendente)
-            const order = action.payload === "from A to Z" ? 1 : -1;
+            const order = payload === "from A to Z" ? 1 : -1;
 
-            // Realizamos una copia del array original de países utilizando el operador spread [...state.countries]
+            // Realizamos una copia del array original de países
             // Esto garantiza que no modificamos el estado original directamente y trabajamos sobre una copia
             const alphaOrder = [...state.countries].sort((a, b) => {
                 const nameA = a.name.toUpperCase();
@@ -97,9 +108,9 @@ const rootReducer = (state = initialState, action) => {
                 countries: alphaOrder,
             };
 
-        case POBLATION_ORDER:
+        case POPULATION_ORDER:
             // Verifica si el orden debe ser ascendente ('asc') o descendente ('desc')
-            const populationOrder = action.payload === 'asc' ?
+            const populationOrder = payload === 'asc' ?
                 [...state.countries].sort((a, b) => a.population - b.population)
                 :
                 [...state.countries].sort((a, b) => b.population - a.population)

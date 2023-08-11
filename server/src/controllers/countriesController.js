@@ -11,10 +11,9 @@ const cleanApiCountry = (api) =>
             flag: country.flags[1],
             continent: country.region,
             capital: country.capital ? country.capital[0] : 'Capital undefined',
-            subregion: country.subregion,
+            subregion: country.subregion ? country.subregion : 'Subregion undefined',
             area: country.area,
             population: country.population,
-            created: false
         }
     });
 
@@ -32,15 +31,18 @@ const getAllCountries = async () => {
         const apiCountries = (await axios.get('https://restcountries.com/v3/all')).data;
 
         const countries = cleanApiCountry(apiCountries);
-        await Country.bulkCreate(countries);
+        await Country.bulkCreate(countries); // Comando para verificar la tabla de paises en BDD => SET client_encoding = 'UTF8';
+
+        return countries;
     }
 
     return dbCountries;
 };
 
 const getCountryById = async (id) => {
-    const UpperCaseId = id.toUpperCase();
-    const findCountry = await Country.findByPk(UpperCaseId, {
+    const upperCaseId = id.toUpperCase();
+    const findCountry = await Country.findOne({
+        where: { id: upperCaseId },
         include: {
             model: Activity,
             attributes: ['name', 'difficulty', 'duration', 'season'],

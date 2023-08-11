@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Filter.module.css";
 import {
@@ -8,14 +8,16 @@ import {
   poblationOrder,
 } from "../../redux/actions";
 
-const Filter = () => {
+const Filter = ({ currentFilter, setCurrentFilter }) => {
   // Obtener el dispatch para poder enviar las acciones a Redux
   const dispatch = useDispatch();
   const allActivities = useSelector((state) => state.allActivities);
 
   // Manejar el cambio del filtro por continente
   const handleContinentChange = (event) => {
-    dispatch(filteredContinent(event.target.value));
+    const selectContinent = event.target.value;
+    setCurrentFilter(selectContinent);
+    dispatch(filteredContinent(selectContinent));
   };
 
   // Manejar el cambio del filtro por actividad
@@ -38,7 +40,7 @@ const Filter = () => {
       {/* Filtro por continente */}
       <div className={styles.filterGroup}>
         <label>Filter by Continent:</label>
-        <select onChange={handleContinentChange}>
+        <select onChange={handleContinentChange} value={currentFilter}>
           <option value="All Continents">All Continents</option>
           <option value="Africa">Africa</option>
           <option value="Americas">Americas</option>
@@ -54,7 +56,9 @@ const Filter = () => {
         <select onChange={handleActivityChange}>
           <option value="All activities">All activities</option>
           {allActivities.map((activity) => (
-            <option key={activity.id} value={activity.name}>{activity.name}</option>
+            <option key={activity.id} value={activity.name}>
+              {activity.name}
+            </option>
           ))}
         </select>
       </div>

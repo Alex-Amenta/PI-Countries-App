@@ -1,5 +1,9 @@
 .container {
-  background-image: linear-gradient(rgba(82, 81, 81, 0.5), rgba(82, 81, 81, 0.9)), url("src/assets/countries-nav.jpeg");
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.796),
+      rgba(0, 0, 0, 0.342)
+    ),
+    url("src/assets/countries-nav.jpeg");
   background-position: top;
   background-size: cover;
 }
@@ -13,22 +17,30 @@
 }
 
 .li1 {
-  flex-grow: 0.20;
+  flex-grow: 1;
+  font-size: 18px;
 }
 
 .li2 {
-  flex-grow: 1;
+  flex-grow: 3;
 }
 
 .link {
-  color: #000000;
+  color: #ffffff;
   text-decoration: none;
   /* text-shadow: 0.2px 0.2px 0px rgb(255, 255, 255); */
-  flex-grow: 1;
-  font-weight: 1000;
+  font-weight: 500;
 }
 
-.container li img {
-  width: 30px;
-  margin: 6px 12px 0 0;
+.link:hover {
+  color: #dbdada;
+}
+
+.container li i {
+  font-size: 25px;
+  margin-left: 25px;
+}
+
+.container i:hover {
+  color: #dbdada;
 }
