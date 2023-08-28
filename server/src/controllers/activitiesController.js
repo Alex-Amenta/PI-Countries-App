@@ -3,7 +3,8 @@ const { Activity, Country } = require('../db.js');
 const getAllActivity = async () => await Activity.findAll({
     include: {
         model: Country,
-        attributes: ['name']
+        attributes: ['id'],
+        through: { attributes: [] }
     }
 });
 
@@ -12,9 +13,6 @@ const createActivity = async (name, difficulty, duration, season, countries) => 
     const existingActivity = await Activity.findOne({
         where: {
             name,
-            difficulty,
-            duration,
-            season,
         },
     });
 
@@ -29,6 +27,7 @@ const createActivity = async (name, difficulty, duration, season, countries) => 
         difficulty,
         duration,
         season,
+        countries
     });
 
     if (countries && countries.length > 0) {
@@ -36,7 +35,7 @@ const createActivity = async (name, difficulty, duration, season, countries) => 
 
         const countryFind = await Country.findAll({
             where: {
-                name: countryNames,
+                id: countryNames,
             },
         });
 
