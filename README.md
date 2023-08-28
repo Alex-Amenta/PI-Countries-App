@@ -1,3 +1,5 @@
+![image](https://github.com/Alex-Amenta/PI-Countries-App/assets/111576219/7f66bb9e-e971-44a4-af14-3fb61ca90c2c)
+
 ![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
 
 # **COUNTRIES** | Proyecto Individual
