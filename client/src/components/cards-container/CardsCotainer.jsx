@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
 import Card from "../card/Card";
 import styles from "./CardsContainer.module.css";
-import { useState } from "react";
 import Pagination from "../pagination/Pagination";
 
-const CardsContainer = ({ countries, currentFilter}) => {
-
-  // State para manejar estado actual
-  const [currentPage, setCurrentPage] = useState(1);
-
+const CardsContainer = ({
+  countries,
+  currentPage,
+  setCurrentPage,
+}) => {
   const countriesPerPage = 10;
 
   // Calcular los índices de inicio y fin para los países de la página actual
@@ -32,7 +31,6 @@ const CardsContainer = ({ countries, currentFilter}) => {
           countries={countries.length}
           countriesPerPage={countriesPerPage}
           currentPage={currentPage}
-          currentFilter={currentFilter}
           onPageChange={handlePageChange}
         />
       </nav>

@@ -8,7 +8,7 @@ import {
   poblationOrder,
 } from "../../redux/actions";
 
-const Filter = ({ currentFilter, setCurrentFilter }) => {
+const Filter = ({ setCurrentPage }) => {
   // Obtener el dispatch para poder enviar las acciones a Redux
   const dispatch = useDispatch();
   const allActivities = useSelector((state) => state.allActivities);
@@ -16,13 +16,14 @@ const Filter = ({ currentFilter, setCurrentFilter }) => {
   // Manejar el cambio del filtro por continente
   const handleContinentChange = (event) => {
     const selectContinent = event.target.value;
-    setCurrentFilter(selectContinent);
     dispatch(filteredContinent(selectContinent));
+    setCurrentPage(1);
   };
 
   // Manejar el cambio del filtro por actividad
   const handleActivityChange = (event) => {
     dispatch(filteredActivity(event.target.value));
+    setCurrentPage(1);
   };
 
   // Manejar el cambio del orden alfabético
@@ -40,7 +41,7 @@ const Filter = ({ currentFilter, setCurrentFilter }) => {
       {/* Filtro por continente */}
       <div className={styles.filterGroup}>
         <label>Filter by Continent:</label>
-        <select onChange={handleContinentChange} value={currentFilter}>
+        <select onChange={handleContinentChange}>
           <option value="All Continents">All Continents</option>
           <option value="Africa">Africa</option>
           <option value="Americas">Americas</option>

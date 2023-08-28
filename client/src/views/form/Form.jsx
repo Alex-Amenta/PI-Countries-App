@@ -5,11 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCountries } from "../../redux/actions";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   // TRAYENDO DATOS CON REDUX
   const dispatch = useDispatch();
   const allCountries = useSelector((state) => state.allCountries);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getCountries());
@@ -110,6 +112,9 @@ const Form = () => {
           icon: "success",
           title: "Turistic activity created successfully!",
         });
+        setTimeout(() => {
+          navigate("/home");
+        }, 1000);
       })
       .catch((error) => {
         Swal.fire({
@@ -198,7 +203,7 @@ const Form = () => {
         >
           <option value="">Select countries...</option>
           {allCountries.sort(compareCountries).map((country) => (
-            <option key={country.id} value={country.name}>
+            <option key={country.id} value={country.id}>
               {country.name}
             </option>
           ))}
@@ -209,23 +214,23 @@ const Form = () => {
 
         {/* Lista de países seleccionados */}
         <div className={styles.selectedCountries}>
-          {selectedCountries.map((country) => (
-            <div key={country} className={styles.selectedCountry}>
-              <div className={styles.button_container}>
-                <button
-                  type="button"
-                  onClick={() => handleRemoveCountry(country)}
-                >
-                  X
-                </button>
+          {selectedCountries.map((countryId) => {
+            const country = allCountries.find((c) => c.id === countryId);
+            return (
+              <div key={countryId} className={styles.selectedCountry}>
+                <div className={styles.button_container}>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveCountry(countryId)}
+                  >
+                    X
+                  </button>
+                </div>
+                <img src={country?.flag || ""} alt={country?.name || ""} />
+                <h2>{country?.name || ""}</h2>
               </div>
-              <img
-                src={allCountries.find((c) => c.name === country)?.flag || ""}
-                alt={country}
-              />
-              <h2>{country}</h2>
-            </div>
-          ))}
+            );
+          })}
         </div>
         <button
           type="submit"

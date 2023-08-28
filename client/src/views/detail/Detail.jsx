@@ -1,13 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Detail.module.css";
 import { getActivities, getCountryById } from "../../redux/actions";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 const Detail = () => {
   const { id } = useParams();
   const country = useSelector((state) => state.country);
-  const activities = useSelector((state) => state.allActivities);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,7 +14,6 @@ const Detail = () => {
     dispatch(getActivities());
   }, [dispatch, id]);
 
-   
   return (
     <div className={styles.container}>
       {!country ? (
@@ -47,29 +45,57 @@ const Detail = () => {
         </div>
       )}
 
-      {activities.length > 0 && (
-        <div className={styles.card_activity}>
-          <h1>Activities</h1>
-          {activities.map((activity) => {
+      <div className={styles.card_activity}>
+        <h1>Activities</h1>
+        {country && country.Activities && country.Activities.length === 0 ? (
+          <div className={styles.buttonContainer}>
+            <h2>This country has no activities yet</h2>
+            <Link to="/form" style={{ textDecoration: "none" }}>
+              <button className={styles.create}>
+                <span className={styles.button__text}>Add Activity</span>
+                <span className={styles.button__icon}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                    stroke="currentColor"
+                    height="24"
+                    fill="none"
+                    className={styles.svg}
+                  >
+                    <line y2="19" y1="5" x2="12" x1="12"></line>
+                    <line y2="12" y1="12" x2="19" x1="5"></line>
+                  </svg>
+                </span>
+              </button>
+            </Link>
+          </div>
+        ) : (
+          country &&
+          country.Activities &&
+          country.Activities.map((act) => {
             return (
-              <div key={activity.id} className={styles.section_activity}>
+              <div key={act.id} className={styles.section_activity}>
                 <h4>
-                  Name: <span>{activity.name}</span>
+                  Name: <span>{act.name}</span>
                 </h4>
                 <h4>
-                  Duration: <span>{activity.duration}</span>
+                  Difficulty: <span>{act.difficulty}</span>
                 </h4>
                 <h4>
-                  Difficulty: <span>{activity.difficulty}</span>
+                  Duration: <span>{act.duration}</span>
                 </h4>
                 <h4>
-                  Season: <span>{activity.season}</span>
+                  Season: <span>{act.season}</span>
                 </h4>
               </div>
             );
-          })}
-        </div>
-      )}
+          })
+        )}
+      </div>
     </div>
   );
 };

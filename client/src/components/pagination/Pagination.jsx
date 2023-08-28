@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import styles from "./Pagination.module.css";
 
 const Pagination = ({
@@ -6,7 +5,6 @@ const Pagination = ({
   countriesPerPage,
   currentPage,
   onPageChange,
-  currentFilter,
 }) => {
   // Calculamos el total de paginas
   const totalPages = Math.ceil(countries / countriesPerPage);
@@ -60,22 +58,26 @@ const Pagination = ({
     return pageNumbersToShow;
   };
 
-  // Redirigir a la primera pagina si se cambia el filtro
-  useEffect(() => {
-    handlePageChange(1);
-  }, [currentFilter]);
-
   return (
     <div className={styles.pagination}>
       {/* Renderizar lista desordenada con números de página */}
       <ul className={styles.paginationList}>
         <li>
-          <button onClick={() => handlePageChange(1)} className={styles.first_last}>First</button>
+          <button
+            onClick={() => handlePageChange(1)}
+            className={styles.first_last}
+          >
+            First
+          </button>
         </li>
         {calculatePageNumbersToShow().map((pageNumber) => (
           <li key={pageNumber}>
             <button
-              className={pageNumber === currentPage ? styles.active : styles.num_pagination}
+              className={
+                pageNumber === currentPage
+                  ? styles.active
+                  : styles.num_pagination
+              }
               onClick={() => handlePageChange(pageNumber)}
             >
               {pageNumber}
@@ -83,7 +85,12 @@ const Pagination = ({
           </li>
         ))}
         <li>
-          <button onClick={() => handlePageChange(totalPages)} className={styles.first_last}>Last</button>
+          <button
+            onClick={() => handlePageChange(totalPages)}
+            className={styles.first_last}
+          >
+            Last
+          </button>
         </li>
       </ul>
     </div>

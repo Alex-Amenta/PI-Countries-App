@@ -73,7 +73,7 @@ const rootReducer = (state = initialState, action) => {
                 };
             } else {
                 const filteredActivity = state.allCountries.filter(
-                    (country) => country.activities && country.activities.some((act) => act.name === activity)
+                    (country) => country.Activities && country.Activities.some((act) => act.name === activity)
                 );
                 return {
                     ...state,

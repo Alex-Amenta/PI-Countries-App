@@ -10,7 +10,7 @@ const Home = () => {
   const countries = useSelector((state) => state.countries);
   const activities = useSelector((state) => state.allActivities);
 
-  const [currentFilter, setCurrentFilter] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     dispatch(getCountries(countries));
@@ -21,8 +21,7 @@ const Home = () => {
     <div className={styles.container}>
       <div className={styles.backgroundImage}>
         <Filter
-          currentFilter={currentFilter}
-          setCurrentFilter={setCurrentFilter}
+          setCurrentPage={setCurrentPage}
         />
         {countries.length === 0 ? (
           <div className={styles.loader}>
@@ -33,7 +32,11 @@ const Home = () => {
             <div className={styles.orbe} style={{ "--index": 4 }}></div>
           </div>
         ) : (
-          <CardsContainer countries={countries} currentFilter={currentFilter} />
+          <CardsContainer
+            countries={countries}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
         )}
         <a href="#" className={styles.scrollLink}>
           &#8679; Top

@@ -44,3 +44,13 @@
   background-color: #63e6be;
   color: #000000;
 }
+
+@keyframes myAnim {
+	0% {
+		transform: rotate(0);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
