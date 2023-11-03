@@ -8,7 +8,8 @@ import {
     FILTER_BY_CONTINENT,
     FILTER_BY_ACTIVITY,
     ALPHABETIC_ORDER,
-    POPULATION_ORDER
+    POPULATION_ORDER,
+    RESET_FILTERS
 } from './types';
 
 const URL_COUNTRIES = 'http://localhost:3001/countries';
@@ -104,6 +105,12 @@ const poblationOrder = (payload) => {
     }
 }
 
+const resetFilters = () => {
+    return {
+        type: RESET_FILTERS,
+    }
+}
+
 
 export {
     getCountries,
@@ -114,5 +121,6 @@ export {
     filteredContinent,
     filteredActivity,
     alphabeticOrder,
-    poblationOrder
+    poblationOrder,
+    resetFilters
 };

@@ -6,11 +6,11 @@ const Landing = () => {
     <div className={styles.landing}>
       <div className={styles.backgroundImage}>
         <h1>
-          Bienvenido a Countries
+        Welcome to Countries
         </h1>
-        <h2>Explora la diversidad del mundo y encuentra tu próximo destino</h2>
+        <h2>Explore the diversity of the world and find your next destination</h2>
         <Link to='/home'>
-            <button><span>Ingresar</span></button>
+            <button><span>Get into</span></button>
         </Link>
       </div>
     </div>

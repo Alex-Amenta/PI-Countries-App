@@ -6,6 +6,7 @@ import {
   filteredActivity,
   filteredContinent,
   poblationOrder,
+  resetFilters,
 } from "../../redux/actions";
 
 const Filter = ({ setCurrentPage }) => {
@@ -34,6 +35,10 @@ const Filter = ({ setCurrentPage }) => {
   // Manejar el cambio del orden por población
   const handlePopulationOrderChange = (event) => {
     dispatch(poblationOrder(event.target.value));
+  };
+
+  const handleReset = () => {
+    dispatch(resetFilters());
   };
 
   return (
@@ -80,6 +85,10 @@ const Filter = ({ setCurrentPage }) => {
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
         </select>
+      </div>
+
+      <div className={styles.resetButton}>
+        <button onClick={handleReset}><span>Reset Filters</span></button>
       </div>
     </div>
   );

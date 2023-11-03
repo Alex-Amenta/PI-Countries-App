@@ -25,8 +25,8 @@
 
 .container_country {
   font-size: 18px;
-  width: 50rem;
-  height: 50rem;
+  height: auto;
+  padding: 1rem;
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.1),
@@ -61,8 +61,8 @@
 }
 
 .card_activity {
-  width: 50rem;
-  height: 50rem;
+  padding: 1rem;
+  height: auto;
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.1),
@@ -82,7 +82,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 40%;
+  margin: 2rem 0;
 }
 
 .buttonContainer h2 {
@@ -168,4 +168,53 @@
 .section_activity h4 {
   color: #ffffff;
   text-shadow: -2px -2px 2px rgb(0, 0, 0);
+}
+
+@media (max-width: 970px) {
+  .container_country {
+    width: 30rem;
+    font-size: 15px;
+  }
+  .container_country h2 {
+    font-size: 20px;
+  }
+}
+@media (max-width: 796px) {
+  .container_country,
+  .card_activity {
+    font-size: 15px;
+    height: auto;
+  }
+  .container_country h2 {
+    font-size: 20px;
+  }
+  .container {
+    padding: 50px;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+}
+@media (max-width: 420px) {
+  .container_country,
+  .card_activity {
+    font-size: 15px;
+    width: auto;
+  }
+  .container_country h2 {
+    font-size: 20px;
+  }
+  .container_country img {
+    width: 200px;
+    height: 150px;
+  }
+  .container {
+    display: flex;
+
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
 }

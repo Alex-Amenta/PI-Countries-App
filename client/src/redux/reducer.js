@@ -7,7 +7,8 @@ import {
     FILTER_BY_CONTINENT,
     FILTER_BY_ACTIVITY,
     ALPHABETIC_ORDER,
-    POPULATION_ORDER
+    POPULATION_ORDER,
+    RESET_FILTERS
 } from "./types"
 
 const initialState = {
@@ -119,6 +120,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 countries: populationOrder
             }
+
+        case RESET_FILTERS: 
+        return {
+            ...state,
+            countries: state.allCountries
+        }
 
         default:
             return { ...state }

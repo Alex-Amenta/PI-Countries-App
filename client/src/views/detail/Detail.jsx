@@ -10,8 +10,8 @@ const Detail = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCountryById(id)); // Llama a la función de la acción para obtener los detalles del país por ID.
-    dispatch(getActivities());
+    dispatch(getCountryById(id));
+    if (country?.Activities) dispatch(getActivities());
   }, [dispatch, id]);
 
   return (

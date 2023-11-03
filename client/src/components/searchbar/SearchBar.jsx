@@ -16,8 +16,8 @@ const SearchBar = () => {
     if (!countryName.length) {
       Swal.fire({
         icon: "info",
-        text: "Please enter the name of a country"
-      })
+        text: "Please enter the name of a country",
+      });
     } else {
       // Buscar el país por nombre en la lista de países almacenada en countries
       const foundCountry = countries.find((country) =>
@@ -46,17 +46,23 @@ const SearchBar = () => {
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
-        <input
-          className={styles.input}
-          type="search"
-          name="search"
-          value={countryName}
-          onChange={handleInputChange}
-          placeholder="Search Country..."
-        />
-        <button type="submit" onClick={handleSubmit}>
-          <span>Search</span>
-        </button>
+        <div className={styles.inputContainer}>
+          <input
+            className={styles.input}
+            type="search"
+            name="search"
+            value={countryName}
+            onChange={handleInputChange}
+            placeholder="Search Country..."
+          />
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className={styles.button}
+          >
+            <i className="fa-solid fa-magnifying-glass" style={{fontSize: "1.2rem"}}></i>
+          </button>
+        </div>
       </form>
     </div>
   );
