@@ -26,6 +26,7 @@
 .container_country {
   font-size: 18px;
   height: auto;
+  width: 35rem;
   padding: 1rem;
   background: linear-gradient(
     135deg,
