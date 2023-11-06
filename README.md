@@ -1,4 +1,5 @@
-![image](https://github.com/Alex-Amenta/PI-Countries-App/assets/111576219/7f66bb9e-e971-44a4-af14-3fb61ca90c2c)
+![Captura de pantalla 2023-11-06 194443](https://github.com/Alex-Amenta/PI-Countries-App/assets/111576219/0d364282-41c7-4de5-9774-10cda667fa94)
+
 
 ![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
 
