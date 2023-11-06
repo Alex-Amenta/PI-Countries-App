@@ -3,16 +3,9 @@ const { Sequelize } = require("sequelize");
 const fs = require('fs');
 const path = require('path');
 
-const {
-  DB_USER, DB_PASSWORD, DB_HOST, EXTERNAL_URL_DEPLOY, DEV
-} = process.env;
+const { DB_URL } = process.env;
 
-let dbbase = EXTERNAL_URL_DEPLOY;
-if (DEV && DEV === "development") {
-  dbbase = `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`;
-}
-
-const sequelize = new Sequelize(dbbase, {
+const sequelize = new Sequelize(DB_URL, {
   logging: false,
   native: false,
 });
