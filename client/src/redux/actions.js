@@ -12,8 +12,8 @@ import {
     RESET_FILTERS
 } from './types';
 
-const URL_COUNTRIES = 'http://localhost:3001/countries';
-const URL_ACTIVITIES = 'http://localhost:3001/activities';
+const URL_COUNTRIES = 'https://countries-app-wz2v.onrender.com/countries';
+const URL_ACTIVITIES = 'https://countries-app-wz2v.onrender.com/activities';
 
 const getCountries = () => {
     return async (dispatch) => {

@@ -92,7 +92,7 @@ const Form = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3001/activities", newActivity)
+      .post("https://countries-app-wz2v.onrender.com/activities", newActivity)
       .then((response) => {
         if (!response.data) {
           throw new Error("Failed to create new activity");
