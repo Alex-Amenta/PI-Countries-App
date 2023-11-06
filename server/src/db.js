@@ -4,10 +4,15 @@ const fs = require('fs');
 const path = require('path');
 
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
+  DB_USER, DB_PASSWORD, DB_HOST, EXTERNAL_URL_DEPLOY, DEV
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`, {
+let dbbase = EXTERNAL_URL_DEPLOY;
+if (DEV && DEV === "development") {
+  dbbase = `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`;
+}
+
+const sequelize = new Sequelize(dbbase, {
   logging: false,
   native: false,
 });
