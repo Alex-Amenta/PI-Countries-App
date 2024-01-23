@@ -201,7 +201,7 @@ select {
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 522px) {
   .glassefect {
     font-size: 15px;
     width: auto;

@@ -1,5 +1,5 @@
 .container {
-  margin: 50px 0px 100px 0px;
+  margin-bottom: 100px;
   padding: 10px;
   background-color: rgba(141, 136, 136, 0.395);
   border: 1px solid white;
@@ -47,4 +47,11 @@
 
 .container p {
   margin-top: 0;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin-bottom: 20px ;
+  }
 }

@@ -1,11 +1,5 @@
 .container {
-  background-image: linear-gradient(
-      rgba(0, 0, 0, 0.796),
-      rgba(0, 0, 0, 0.342)
-    ),
-    url("src/assets/countries-nav.jpeg");
-  background-position: top;
-  background-size: cover;
+  background-color: #132338
 }
 
 .container ul {
@@ -28,7 +22,6 @@
 .link {
   color: #ffffff;
   text-decoration: none;
-  /* text-shadow: 0.2px 0.2px 0px rgb(255, 255, 255); */
   font-weight: 500;
 }
 
@@ -41,6 +34,20 @@
   margin-left: 25px;
 }
 
-.container i:hover {
-  color: #dbdada;
+.social_icon {
+  transition: transform 0.3s ease;
+}
+
+.social_icon:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .container h2 {
+    font-size: 1rem;
+  }
+
+  .li1 {
+    font-size: 1rem;
+  }
 }

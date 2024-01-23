@@ -1,5 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital@1&family=Ubuntu&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
+html {
+  scroll-behavior: smooth;
+}
+
+#root {
+  text-align: center;
+  background-color: #f1efef;
+}
+
+body {
+  margin: 0;
+  position: relative;
+}
+
 :root {
   font-family: "Rubik", "Ubuntu", sans-serif;
   line-height: 1.5;
@@ -7,5 +22,4 @@
   padding: 0;
 
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 }

@@ -45,8 +45,8 @@ const Filter = ({ setCurrentPage }) => {
     <div className={styles.container}>
       {/* Filtro por continente */}
       <div className={styles.filterGroup}>
-        <label>Filter by Continent:</label>
-        <select onChange={handleContinentChange}>
+        <label htmlFor="Filter-by-continent">Filter by Continent:</label>
+        <select onChange={handleContinentChange} id="Filter-by-continent">
           <option value="All Continents">All Continents</option>
           <option value="Africa">Africa</option>
           <option value="Americas">Americas</option>
@@ -58,8 +58,8 @@ const Filter = ({ setCurrentPage }) => {
 
       {/* Filtro por actividad */}
       <div className={styles.filterGroup}>
-        <label>Filter by Activity:</label>
-        <select onChange={handleActivityChange}>
+        <label htmlFor="Filter-by-Activity">Filter by Activity:</label>
+        <select onChange={handleActivityChange} id="Filter-by-Activity">
           <option value="All activities">All activities</option>
           {allActivities.map((activity) => (
             <option key={activity.id} value={activity.name}>
@@ -71,8 +71,8 @@ const Filter = ({ setCurrentPage }) => {
 
       {/* Orden alfabético */}
       <div className={styles.filterGroup}>
-        <label>Alphabetic Order:</label>
-        <select onChange={handleAlphabeticOrderChange}>
+        <label htmlFor="Alphabetic-order">Alphabetic Order:</label>
+        <select onChange={handleAlphabeticOrderChange} id="Alphabetic-order">
           <option value="from A to Z">A to Z</option>
           <option value="from Z to A">Z to A</option>
         </select>
@@ -80,8 +80,8 @@ const Filter = ({ setCurrentPage }) => {
 
       {/* Orden por población */}
       <div className={styles.filterGroup}>
-        <label>Population Order:</label>
-        <select onChange={handlePopulationOrderChange}>
+        <label htmlFor="Population-order">Population Order:</label>
+        <select onChange={handlePopulationOrderChange} id="Population-order">
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
         </select>

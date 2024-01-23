@@ -3,6 +3,7 @@ import styles from "./SearchBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getCountryByName } from "../../redux/actions";
 import Swal from "sweetalert2";
+import SearchIcon from '@mui/icons-material/Search';
 
 const SearchBar = () => {
   const [countryName, setCountryName] = useState("");
@@ -60,7 +61,7 @@ const SearchBar = () => {
             onClick={handleSubmit}
             className={styles.button}
           >
-            <i className="fa-solid fa-magnifying-glass" style={{fontSize: "1.2rem"}}></i>
+            <SearchIcon/>
           </button>
         </div>
       </form>

@@ -18,16 +18,17 @@
 }
 
 .container select:hover {
-    box-shadow: 0px 4px 15px 1px #63E6be
+  box-shadow: 0px 4px 15px 1px #63e6be;
 }
 
-.container select, option {
-    cursor: pointer;
+.container select,
+option {
+  cursor: pointer;
 }
 
 .container label {
-    display: block;
-    margin-bottom: 10px;
+  display: block;
+  margin-bottom: 10px;
 }
 
 .resetButton {
@@ -87,4 +88,13 @@
 
 .resetButton button:hover::before {
   transform: translate3d(100%, 0, 0);
+}
+
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
 }

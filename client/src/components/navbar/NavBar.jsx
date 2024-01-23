@@ -1,6 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import SearchBar from "../searchbar/SearchBar";
+import githubIcon from "../../assets/githubIcon.svg";
+import linkdeinIcon from "../../assets/linkedinIcon.svg";
 
 const NavBar = () => {
   const location = useLocation();
@@ -13,28 +15,30 @@ const NavBar = () => {
             <h2>Countries App</h2>
           </Link>
         </li>
-        <li className={styles.li2}>{location.pathname === "/home" && <SearchBar />}</li>
+        <li className={styles.li2}>
+          {location.pathname === "/home" && <SearchBar />}
+        </li>
         <li className={styles.li1}>
           <Link className={styles.link} to="/form">
             CREATE ACTIVITY
           </Link>
         </li>
-        <li>
+        <li style={{marginRight: "1rem"}}>
           <a
             href="https://www.linkedin.com/in/alexander-amenta/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i className="fa-brands fa-linkedin" style={{color: "#ffffff"}}></i>
+            <img src={linkdeinIcon} className={styles.social_icon} alt="LinkedIn Icon" width={25} height={30}/>
           </a>
         </li>
-        <li>
+        <li style={{marginRight: "1rem"}}>
           <a
             href="https://github.com/Alex-Amenta"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i className="fa-brands fa-github" style={{color: "#ffffff", marginRight: "20px"}}></i>
+            <img src={githubIcon} alt="Github Icon" className={styles.social_icon} width={25} height={30}/>
           </a>
         </li>
       </ul>
