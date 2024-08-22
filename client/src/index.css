@@ -7,12 +7,13 @@ html {
 
 #root {
   text-align: center;
-  background-color: #f1efef;
 }
 
 body {
   margin: 0;
   position: relative;
+  background: rgb(148,192,249);
+  background: linear-gradient(90deg, rgba(148,192,249,1) 0%, rgba(230,230,230,1) 90%);
 }
 
 :root {
